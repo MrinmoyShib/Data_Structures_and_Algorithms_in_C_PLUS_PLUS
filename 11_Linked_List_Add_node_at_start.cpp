@@ -36,4 +36,6 @@ int main() {
 
   insertAtHead(head, 3);
   traverse(head);
+
+  return 0;
 }

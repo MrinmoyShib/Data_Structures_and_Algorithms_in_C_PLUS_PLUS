@@ -54,4 +54,6 @@ int main() {
 
   insertAtEnd(head, 4);
   traverse(head);
+
+  return 0;
 }
