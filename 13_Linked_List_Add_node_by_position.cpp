@@ -26,20 +26,23 @@ void insertAtHead(Node *&head, int val) {
   head = newNode;
 }
 
-void insertAtEnd(Node *&head, int val) {
-  if (head == NULL) {
+void insertByPos(Node *&head, int val, int pos) {
+  if (pos == 1) {
     insertAtHead(head, val);
     return;
   }
 
   Node *newNode = new Node(val);
-  Node *temp = head;
+  Node *pre = head;
+  int count = 1;
 
-  while (temp->next != NULL) {
-    temp = temp->next;
+  while (count < pos - 1) {
+    pre = pre->next;
+    count++;
   }
 
-  temp->next = newNode;
+  newNode->next = pre->next;
+  pre->next = newNode;
 }
 
 int main() {
@@ -52,7 +55,7 @@ int main() {
 
   traverse(head);
 
-  insertAtEnd(head, 4);
+  insertByPos(head, 5, 2);
   traverse(head);
 
   return 0;

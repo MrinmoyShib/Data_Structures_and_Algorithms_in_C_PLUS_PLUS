@@ -20,26 +20,17 @@ void traverse(Node *head) {
   cout << "NULL" << endl;
 }
 
-void insertAtHead(Node *&head, int val) {
-  Node *newNode = new Node(val);
-  newNode->next = head;
-  head = newNode;
-}
-
-void insertAtEnd(Node *&head, int val) {
-  if (head == NULL) {
-    insertAtHead(head, val);
-    return;
-  }
-
-  Node *newNode = new Node(val);
+void insertByVal(Node *&head, int value) {
+  Node *pre = NULL;
   Node *temp = head;
 
-  while (temp->next != NULL) {
+  while (temp != NULL && temp->value != value) {
+    pre = temp;
     temp = temp->next;
   }
 
-  temp->next = newNode;
+  pre->next = temp->next;
+  free(temp);
 }
 
 int main() {
@@ -52,7 +43,7 @@ int main() {
 
   traverse(head);
 
-  insertAtEnd(head, 4);
+  insertByVal(head, 3);
   traverse(head);
 
   return 0;
