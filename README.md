@@ -1,14 +1,11 @@
 # Data_Structures_and_Algorithms_in_C_PLUS_PLUS
+
 A comprehensive collection of Data Structures and Algorithms implementations, complexity analysis, and competitive programming solutions. Documenting my journey toward technical interview mastery and efficient problem-solving.
 
-# 🚀 Mission: Mastering Data Structures & Algorithms
-
-<p align="center">
-  <img src="https://capsule-render.vercel.app/render?type=waving&color=auto&height=200&section=header&text=DSA%20Learning%20Journey&fontSize=50&animation=fadeIn" alt="Header Banner" />
-</p>
+---
 
 ## 🌟 Overview
-Welcome to my DSA sanctuary! This repository is a dedicated space where I document my growth through the logic, complexity, and beauty of algorithms. 
+Welcome to my DSA sanctuary! This repository is a dedicated space where I document my growth through the logic, complexity, and beauty of algorithms using **C++**.
 
 ---
 
@@ -27,10 +24,10 @@ Welcome to my DSA sanctuary! This repository is a dedicated space where I docume
 
 I believe that organized code is a sign of an organized mind. 
 
-* **🧩 Data Structures:** Implementations of Stacks, Queues, and more.
-* **⚡ Algorithms:** Greedy Algorithms and Recursion.
-* **💡 Problem Solving:** My logic breakdowns for top-tier challenges.
-* **📝 Notes:** High-level summaries and $O(n)$ analysis.
+* **🧩 Data Structures:** Custom C++ implementations of Stacks, Queues, and more.
+* **⚡ Algorithms:** Efficient Sorting, Searching, and Greedy approaches.
+* **💡 Problem Solving:** Logic breakdowns for top-tier challenges using STL.
+* **📝 Notes:** High-level summaries and $O(n)$ analysis for every solution.
 
 ---
 
@@ -47,7 +44,7 @@ I believe that organized code is a sign of an organized mind.
 
 ## 🛠 Tech Stack Used
 <p align="left">
-  <img src="https://skillicons.dev/icons?i=cpp,python,java,js,git,github" />
+  <img src="https://skillicons.dev/icons?i=cpp" alt="C Plus Plus" />
 </p>
 
 ---
