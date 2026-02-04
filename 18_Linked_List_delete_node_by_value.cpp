@@ -20,7 +20,7 @@ void traverse(Node *head) {
   cout << "NULL" << endl;
 }
 
-void insertByVal(Node *&head, int value) {
+void deleteByVal(Node *&head, int value) {
   Node *pre = NULL;
   Node *temp = head;
 
@@ -43,7 +43,7 @@ int main() {
 
   traverse(head);
 
-  insertByVal(head, 3);
+  deleteByVal(head, 3);
   traverse(head);
 
   return 0;
