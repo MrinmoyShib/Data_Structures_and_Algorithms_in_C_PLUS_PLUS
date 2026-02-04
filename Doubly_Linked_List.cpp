@@ -1,20 +1,18 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// 1. Node Structure: Updated for Doubly Linked List
 struct Node {
   int value;
   Node *next;
-  Node *prev; // NEW: Pointer to the previous node
+  Node *prev;
 
   Node(int val) {
     value = val;
     next = NULL;
-    prev = NULL; // Initialize prev to NULL
+    prev = NULL;
   }
 };
 
-// 2. Class: Manages the Doubly Linked List
 class DoublyLinkedList {
 private:
   Node *head;
@@ -22,7 +20,6 @@ private:
 public:
   DoublyLinkedList() { head = NULL; }
 
-  // Destructor: Cleans up memory automatically
   ~DoublyLinkedList() {
     while (head != NULL) {
       deleteAtStart();
@@ -40,17 +37,16 @@ public:
     cout << "NULL" << endl;
   }
 
-  // NEW: Backward Traversal (Bonus feature of DLL)
   void traverseBackward() {
     if (head == NULL)
       return;
     Node *temp = head;
-    // Go to the last node
+
     while (temp->next != NULL) {
       temp = temp->next;
     }
     cout << "Backward: NULL->";
-    // Walk backwards
+
     while (temp != NULL) {
       cout << temp->value << "<->";
       temp = temp->prev;
@@ -67,9 +63,9 @@ public:
       return;
     }
 
-    newNode->next = head; // 1. New node points forward to head
-    head->prev = newNode; // 2. Old head points backward to new node
-    head = newNode;       // 3. Update head
+    newNode->next = head;
+    head->prev = newNode;
+    head = newNode;
   }
 
   void insertAtEnd(int val) {
@@ -85,8 +81,8 @@ public:
       temp = temp->next;
     }
 
-    temp->next = newNode; // 1. Last node points to new node
-    newNode->prev = temp; // 2. New node points back to last node
+    temp->next = newNode;
+    newNode->prev = temp;
   }
 
   void insertByPos(int val, int pos) {
@@ -112,14 +108,13 @@ public:
 
     Node *newNode = new Node(val);
 
-    // Linking logic
-    newNode->next = temp->next; // New node points to next neighbor
-    newNode->prev = temp;       // New node points back to current node
+    newNode->next = temp->next;
+    newNode->prev = temp;
 
-    if (temp->next != NULL) {     // If there is a next neighbor...
-      temp->next->prev = newNode; // ...tell it to point back to new node
+    if (temp->next != NULL) {
+      temp->next->prev = newNode;
     }
-    temp->next = newNode; // Current node points to new node
+    temp->next = newNode;
   }
 
   void insertByVal(int target, int val) {
@@ -130,7 +125,7 @@ public:
 
     if (temp == NULL) {
       return;
-    } // Target not found
+    }
 
     Node *newNode = new Node(val);
 
@@ -153,7 +148,7 @@ public:
     head = head->next;
 
     if (head != NULL) {
-      head->prev = NULL; // Important: New head has no previous node
+      head->prev = NULL;
     }
 
     delete temp;
@@ -174,9 +169,7 @@ public:
       temp = temp->next;
     }
 
-    // temp is now the last node
-    temp->prev->next =
-        NULL; // Tell the 2nd to last node to forget the last node
+    temp->prev->next = NULL;
     delete temp;
   }
 
@@ -201,7 +194,6 @@ public:
       return;
     }
 
-    // temp is the node to delete. We just link its neighbors.
     temp->prev->next = temp->next;
 
     if (temp->next != NULL) {
@@ -228,9 +220,8 @@ public:
 
     if (temp == NULL) {
       return;
-    } // Value not found
+    }
 
-    // Link neighbors
     temp->prev->next = temp->next;
 
     if (temp->next != NULL) {
