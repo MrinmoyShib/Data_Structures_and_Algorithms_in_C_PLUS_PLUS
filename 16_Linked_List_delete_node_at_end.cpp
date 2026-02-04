@@ -27,7 +27,7 @@ void deleteAtStart(Node *&head) {
 
   Node *temp = head;
   head = head->next;
-  free(temp);
+  delete temp;
 }
 
 void deleteAtEnd(Node *&head) {

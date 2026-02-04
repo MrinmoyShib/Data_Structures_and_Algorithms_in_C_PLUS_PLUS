@@ -30,7 +30,7 @@ void deleteByVal(Node *&head, int value) {
   }
 
   pre->next = temp->next;
-  free(temp);
+  delete temp;
 }
 
 int main() {

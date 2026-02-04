@@ -32,77 +32,85 @@ void insertAtEnd(Node *&head, int val) {
     return;
   }
 
-  Node *newNode = new Node(val);
   Node *temp = head;
-
   while (temp->next != NULL) {
     temp = temp->next;
   }
 
-  temp->next = newNode;
+  temp->next = new Node(val);
 }
 
 void insertByPos(Node *&head, int val, int pos) {
+  if (pos <= 0)
+    return;
+
   if (pos == 1) {
     insertAtHead(head, val);
     return;
   }
 
-  Node *newNode = new Node(val);
   Node *pre = head;
   int count = 1;
 
-  while (count < pos - 1) {
+  while (count < pos - 1 && pre != NULL) {
     pre = pre->next;
     count++;
   }
 
+  if (pre == NULL)
+    return;
+
+  Node *newNode = new Node(val);
   newNode->next = pre->next;
   pre->next = newNode;
 }
 
 void insertByVal(Node *&head, int target, int val) {
-  Node *newNode = new Node(val);
-  Node *pre = head;
+  Node *temp = head;
 
-  while (pre != NULL && pre->value != target) {
-    pre = pre->next;
+  while (temp != NULL && temp->value != target) {
+    temp = temp->next;
   }
 
-  newNode->next = pre->next;
-  pre->next = newNode;
+  if (temp == NULL)
+    return;
+
+  Node *newNode = new Node(val);
+  newNode->next = temp->next;
+  temp->next = newNode;
 }
 
 void deleteAtStart(Node *&head) {
-  if (head == NULL) {
+  if (head == NULL)
     return;
-  }
 
   Node *temp = head;
   head = head->next;
-  free(temp);
+  delete temp;
 }
 
 void deleteAtEnd(Node *&head) {
-  if (head == NULL) {
+  if (head == NULL)
     return;
-  }
+
   if (head->next == NULL) {
     deleteAtStart(head);
     return;
   }
 
-  Node *secondlast = head;
-  while (secondlast->next->next != NULL) {
-    secondlast = secondlast->next;
+  Node *temp = head;
+  while (temp->next->next != NULL) {
+    temp = temp->next;
   }
 
-  Node *last = secondlast->next;
-  secondlast->next = NULL;
-  free(last);
+  delete temp->next;
+  temp->next = NULL;
 }
 
 void deleteByPos(Node *&head, int pos) {
+  if (head == NULL || pos <= 0)
+    return;
+
   if (pos == 1) {
     deleteAtStart(head);
     return;
@@ -111,58 +119,73 @@ void deleteByPos(Node *&head, int pos) {
   Node *pre = head;
   int count = 1;
 
-  while (count < pos - 1) {
+  while (count < pos - 1 && pre != NULL) {
     pre = pre->next;
     count++;
   }
 
-  Node *curr = pre->next;
-  pre->next = pre->next->next;
-  free(curr);
+  if (pre == NULL || pre->next == NULL)
+    return;
+
+  Node *temp = pre->next;
+  pre->next = temp->next;
+  delete temp;
 }
 
 void deleteByVal(Node *&head, int value) {
-  Node *pre = NULL;
-  Node *temp = head;
+  if (head == NULL)
+    return;
+
+  if (head->value == value) {
+    deleteAtStart(head);
+    return;
+  }
+
+  Node *pre = head;
+  Node *temp = head->next;
 
   while (temp != NULL && temp->value != value) {
     pre = temp;
     temp = temp->next;
   }
 
+  if (temp == NULL)
+    return;
+
   pre->next = temp->next;
-  free(temp);
+  delete temp;
 }
 
-void updateNodeValur(Node *&head, int pos, int updatedvalue) {
+void updateNodeValue(Node *&head, int pos, int updatedvalue) {
+  if (head == NULL || pos <= 0)
+    return;
+
   Node *temp = head;
   int count = 1;
 
-  while (count < pos) {
+  while (count < pos && temp != NULL) {
     temp = temp->next;
     count++;
   }
+
+  if (temp == NULL)
+    return;
 
   temp->value = updatedvalue;
 }
 
 int main() {
-
   Node *head = NULL;
 
   int n;
-  cout << "How many nodes? ";
   cin >> n;
 
-  cout << "Enter " << n << " values: ";
   for (int i = 0; i < n; i++) {
     int val;
     cin >> val;
     insertAtEnd(head, val);
   }
 
-  cout << "Your linked list: ";
-  traverse(head);
   /*
   int values[] = {1, 2, 3, 4, 5};
   Node *head = NULL;
@@ -178,6 +201,8 @@ int main() {
     node1->next = node2;
     Node *head = node1;
     */
+
+  traverse(head);
 
   insertAtHead(head, 3);
   traverse(head);
@@ -203,7 +228,7 @@ int main() {
   deleteByVal(head, 3);
   traverse(head);
 
-  updateNodeValur(head, 1, 2);
+  updateNodeValue(head, 1, 2);
   traverse(head);
 
   return 0;
